@@ -1,0 +1,20 @@
+{% extends 'job/base.html' %}
+
+{#{% load humanize %}#}
+
+{% block content %}
+    {% for job in jobs %}
+
+        <div class="job">
+            <h3><a href="{% url 'job_detail' pk=job.pk %}">{{ job.title }}</a></h3>
+
+            <div class="date">
+                <em><p>Posted on: {{ job.published_date }}</p></em>
+                <p>Company: {{ job.company_name }}</p>
+            </div>
+
+            <p>{{ job.description|truncatewords:70|linebreaksbr }}</p>
+        </div>
+
+    {% endfor %}
+{% endblock %}

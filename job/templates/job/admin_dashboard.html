@@ -1,0 +1,48 @@
+{% extends 'job/base.html' %}
+
+{#{% load humanize %}#}
+
+{% block content %}
+
+    <h2 style="color: #0A68A5;">Admin - Create and Manage Jobs</h2>
+
+    <div class="all-job-status">
+
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Recruiter</th>
+                <th>Status</th>
+                <th>Published Date</th>
+                <th>Applicants</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {%  for job in jobs %}
+                <tr>
+                    <td>{{ job.title }}</td>
+                    <td>{{ job.created_by }}</td>
+                    <td>{{ job.job_status }}</td>
+                    <td>{{ job.published_date }}</td>
+                    <td>{{ job.application_count }}</td>
+                    <td><a href="/delete/{{ job.id }}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+    </div>
+{#job_post#}
+{#posted_by#}
+{#publish status#}
+{#published_on#}
+{#Action(Edit/Delete)#}
+
+{%  endblock %}
+
+</body>
+</html>

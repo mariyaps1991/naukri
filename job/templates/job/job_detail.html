@@ -1,0 +1,28 @@
+{% extends 'job/base.html' %}
+
+{% block content %}
+
+    <div class="job">
+        <h3><a href="{% url 'job_detail' pk=job.pk %}">{{ job.title }}</a></h3>
+        <div class="date">
+            <em><p>Posted on: {{ job.published_date }}</p></em>
+            <p>Applicants: {{ job.application_count }}</p>
+        </div>
+
+        <div class="apply-btn">
+            {% if job.user_application_count > 0 %}
+                <p>You have already applied to this job</p>
+            {% elif job.user_application_count == 0 %}
+                <button type="submit" name="apply btn-default" onclick="window.location.href='{% url 'apply_job' pk=job.pk%}' ">Apply</button>
+            {% elif job.user_name == 'anonymous' %}
+                <button type="submit" name="apply btn-default" onclick="window.location.href='{% url 'register_naukri' pk=job.pk %}' ">Apply</button>
+            {% endif %}
+        </div>
+
+        <div class="job-description">
+            <p>{{ job.description|linebreaksbr}}</p>
+        </div>
+
+    </div>
+
+{% endblock %}
